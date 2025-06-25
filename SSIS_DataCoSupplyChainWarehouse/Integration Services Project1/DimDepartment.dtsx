@@ -1,0 +1,970 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/5/2024 10:30:01 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="BOBBYMOL"
+  DTS:CreatorName="BOBBYMOL\aswan"
+  DTS:DTSID="{E4DA7D8A-CD2E-41F0-901A-1121247CF2B5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="16393"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{A0DB0147-ECF9-4A8A-A1AA-7E348ED1263F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BOBBYMOL\SQLEXPRESS.DataCoSupplyChainWareHouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0D541F1E-F532-4E85-8B43-49B2D22AD7F5}"
+      DTS:ObjectName="BOBBYMOL\SQLEXPRESS.DataCoSupplyChainWareHouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=BOBBYMOL\SQLEXPRESS;Initial Catalog=DataCoSupplyChainWareHouse;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{0D541F1E-F532-4E85-8B43-49B2D22AD7F5}BOBBYMOL\SQLEXPRESS.DataCoSupplyChainWareHouse;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[BOBBYMOL\SQLEXPRESS.DataCoSupplyChainWareHouse 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{953784D6-1B46-49F0-B342-6E8783BE524E}"
+      DTS:ObjectName="BOBBYMOL\SQLEXPRESS.DataCoSupplyChainWareHouse 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=BOBBYMOL\SQLEXPRESS;Initial Catalog=DataCoSupplyChainWareHouse;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{953784D6-1B46-49F0-B342-6E8783BE524E}BOBBYMOL\SQLEXPRESS.DataCoSupplyChainWareHouse 1;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{5930F7C1-5B50-489E-8552-D75CFCC4003F}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=Z:\DBS\Second Semester\Data Storage\Assesment\DataCoSupplyChainDataset.xls;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E700B158-F69C-475E-9EF5-FC128F5619FF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Conditional Split for Australia"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split for Australia"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Conditional Split for Australia.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Conditional Split for Australia.Inputs[Conditional Split Input].Columns[Order_Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Order_Country"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Order_Country]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split for Australia.Outputs[Australia]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Australia"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split for Australia.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Order_Country]} == "Australia"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">Order_Country == "Australia"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split for Australia.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split for Australia.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split for Australia.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split for Australia.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split for Australia.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split for Australia.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split for Australia.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split for Australia.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\DataCoSupplyChain Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="DataCoSupplyChain Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">DataCoSupplyChainDataset$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Order_Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Country]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Order_Country]"
+                      name="Order_Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Department_Id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Department_Id]"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Department_Id]"
+                      name="Department_Id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Department_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Department_Name]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Department_Name]"
+                      name="Department_Name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Type]"
+                      dataType="wstr"
+                      length="255"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Days_for_shipping_(real)]"
+                      dataType="r8"
+                      name="Days_for_shipping_(real)" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Days_for_shipment_(scheduled)]"
+                      dataType="r8"
+                      name="Days_for_shipment_(scheduled)" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Benefit_per_order]"
+                      dataType="r8"
+                      name="Benefit_per_order" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales_per_customer]"
+                      dataType="r8"
+                      name="Sales_per_customer" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Delivery_Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Delivery_Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Late_delivery_risk]"
+                      dataType="r8"
+                      name="Late_delivery_risk" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Category_Id]"
+                      dataType="r8"
+                      name="Category_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Category_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Category_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_City]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer_City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer_Country" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_Email]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer_Email" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_Fname]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer_Fname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_Id]"
+                      dataType="r8"
+                      name="Customer_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_Lname]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer_Lname" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_Password]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer_Password" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_Segment]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer_Segment" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_State]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer_State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_Street]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer_Street" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Customer_Zipcode]"
+                      dataType="r8"
+                      name="Customer_Zipcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Department_Id]"
+                      dataType="r8"
+                      name="Department_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Department_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Department_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Latitude]"
+                      dataType="r8"
+                      name="Latitude" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Longitude]"
+                      dataType="r8"
+                      name="Longitude" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Market]"
+                      dataType="wstr"
+                      length="255"
+                      name="Market" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_City]"
+                      dataType="wstr"
+                      length="255"
+                      name="Order_City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Order_Country" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Customer_Id]"
+                      dataType="r8"
+                      name="Order_Customer_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[order_date_(DateOrders)]"
+                      dataType="wstr"
+                      length="255"
+                      name="order_date_(DateOrders)" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Id]"
+                      dataType="r8"
+                      name="Order_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Item_Cardprod_Id]"
+                      dataType="r8"
+                      name="Order_Item_Cardprod_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Item_Discount]"
+                      dataType="r8"
+                      name="Order_Item_Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Item_Discount_Rate]"
+                      dataType="r8"
+                      name="Order_Item_Discount_Rate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Item_Id]"
+                      dataType="r8"
+                      name="Order_Item_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Item_Product_Price]"
+                      dataType="r8"
+                      name="Order_Item_Product_Price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Item_Profit_Ratio]"
+                      dataType="r8"
+                      name="Order_Item_Profit_Ratio" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Item_Quantity]"
+                      dataType="r8"
+                      name="Order_Item_Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Sales]"
+                      dataType="r8"
+                      name="Sales" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Item_Total]"
+                      dataType="r8"
+                      name="Order_Item_Total" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Profit_Per_Order]"
+                      dataType="r8"
+                      name="Order_Profit_Per_Order" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Region]"
+                      dataType="wstr"
+                      length="255"
+                      name="Order_Region" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_State]"
+                      dataType="wstr"
+                      length="255"
+                      name="Order_State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Order_Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Order_Zipcode]"
+                      dataType="wstr"
+                      length="255"
+                      name="Order_Zipcode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Product_Card_Id]"
+                      dataType="r8"
+                      name="Product_Card_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Product_Category_Id]"
+                      dataType="r8"
+                      name="Product_Category_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Product_Description]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Description" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Product_Image]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Image" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Product_Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product_Name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Product_Price]"
+                      dataType="r8"
+                      name="Product_Price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Product_Status]"
+                      dataType="r8"
+                      name="Product_Status" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[shipping_date_(DateOrders)]"
+                      dataType="wstr"
+                      length="255"
+                      name="shipping_date_(DateOrders)" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].ExternalColumns[Shipping_Mode]"
+                      dataType="wstr"
+                      length="255"
+                      name="Shipping_Mode" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[Order_Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[Order_Country]"
+                      name="Order_Country" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[Department_Id]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[Department_Id]"
+                      name="Department_Id" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[Department_Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Error Output].Columns[Department_Name]"
+                      name="Department_Name" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\DimDepartment OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DimDepartment OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimDepartment]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[BOBBYMOL\SQLEXPRESS.DataCoSupplyChainWareHouse 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[BOBBYMOL\SQLEXPRESS.DataCoSupplyChainWareHouse 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Department_Id]"
+                      cachedDataType="r8"
+                      cachedName="Department_Id"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Department_Id]"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Department_Id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Department_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Department_Name"
+                      externalMetadataColumnId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Department_Name]"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Department_Name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Department_Key]"
+                      dataType="i4"
+                      name="Department_Key" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Department_Id]"
+                      dataType="i4"
+                      name="Department_Id" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Department_Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Department_Name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DimDepartment OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DimDepartment OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DimDepartment OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[Order_Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Order_Country"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Order_Country]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[Department_Id]"
+                      cachedDataType="r8"
+                      cachedName="Department_Id"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Department_Id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Sort.Inputs[Sort Input].Columns[Department_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Department_Name"
+                      lineageId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Department_Name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Order_Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Order_Country]"
+                      name="Order_Country">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Order_Country]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Department_Id]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Department_Id]"
+                      name="Department_Id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Department_Id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Department_Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\Sort.Outputs[Sort Output].Columns[Department_Name]"
+                      name="Department_Name">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output].Columns[Department_Name]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Australia]"
+              endId="Package\Data Flow Task\Sort.Inputs[Sort Input]"
+              name="Australia"
+              startId="Package\Data Flow Task\Conditional Split for Australia.Outputs[Australia]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Excel Source Output]"
+              endId="Package\Data Flow Task\Conditional Split for Australia.Inputs[Conditional Split Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task\DataCoSupplyChain Excel Source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Sort Output]"
+              endId="Package\Data Flow Task\DimDepartment OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Sort Output"
+              startId="Package\Data Flow Task\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="255.833319355217,139.533332363036" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="236.8,41.6"
+          Id="Package\Data Flow Task\DataCoSupplyChain Excel Source"
+          TopLeft="289.166650867297,45.9333330139187" />
+        <NodeLayout
+          Size="212,41.6"
+          Id="Package\Data Flow Task\Conditional Split for Australia"
+          TopLeft="205.833322087096,162.933332200315" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Excel Source Output]"
+          TopLeft="407.566650867297,87.5333330139187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-95.733328780201,75.3999991863966"
+              Start="0,0"
+              End="-95.733328780201,67.8999991863966">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.6999995931983" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.6999995931983"
+                    Point2="0,37.6999995931983"
+                    Point3="-4,37.6999995931983" />
+                  <mssgle:LineSegment
+                    End="-91.733328780201,37.6999995931983" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-91.733328780201,37.6999995931983"
+                    Point2="-95.733328780201,37.6999995931983"
+                    Point3="-95.733328780201,41.6999995931983" />
+                  <mssgle:LineSegment
+                    End="-95.733328780201,67.8999991863966" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\Data Flow Task\Sort"
+          TopLeft="572.49996871998,167.266665503515" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Australia]"
+          TopLeft="417.833322087096,185.899998851915">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="154.666646632884,0"
+              Start="0,0"
+              End="147.166646632884,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="147.166646632884,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="53.841897535192,5,39.4828515625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="247.2,41.6"
+          Id="Package\Data Flow Task\DimDepartment OLE DB Destination"
+          TopLeft="300.833316896526,266.066664816472" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Sort Output]"
+          TopLeft="621.29996871998,208.866665503515">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-196.866651823455,57.1999993129572"
+              Start="0,0"
+              End="-196.866651823455,49.6999993129572">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5999996564786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5999996564786"
+                    Point2="0,28.5999996564786"
+                    Point3="-4,28.5999996564786" />
+                  <mssgle:LineSegment
+                    End="-192.866651823455,28.5999996564786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-192.866651823455,28.5999996564786"
+                    Point2="-196.866651823455,28.5999996564786"
+                    Point3="-196.866651823455,32.5999996564786" />
+                  <mssgle:LineSegment
+                    End="-196.866651823455,49.6999993129572" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\DataCoSupplyChain Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\DimDepartment OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
